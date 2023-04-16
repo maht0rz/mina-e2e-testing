@@ -1,0 +1,70 @@
+{
+  "name": "farm",
+  "version": "0.1.0",
+  "description": "",
+  "author": "",
+  "license": "Apache-2.0",
+  "keywords": [
+    "mina-zkapp",
+    "mina-zk-app",
+    "mina-dapp",
+    "zkapp"
+  ],
+  "type": "module",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "buildw": "tsc --watch",
+    "init:account": "ts-node-esm scripts/faucet.ts",
+    "commit": "cz",
+    "coverage": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js --coverage",
+    "format": "prettier --write --ignore-unknown **/*",
+    "prepare": "husky install",
+    "test": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js",
+    "test:berkeley": "TEST_ON_BERKELEY=true npm run test",
+    "testw": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js --watch",
+    "lint": "npx eslint src/* --fix",
+    "postinstall": "cd node_modules/@stove-labs/mip-token-standard/ && npm run build"
+  },
+  "lint-staged": {
+    "**/*": [
+      "eslint src/* --fix",
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-typescript": "^7.16.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.7.0",
+    "eslint-plugin-snarkyjs": "^0.1.0",
+    "husky": "^7.0.1",
+    "jest": "^27.3.1",
+    "lint-staged": "^11.0.1",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.2"
+  },
+  "peerDependencies": {
+    "snarkyjs": "^0.9.6"
+  },
+  "dependencies": {
+    "@stove-labs/mip-token-standard": "github:stove-labs/mip-token-standard",
+    "@stove-labs/token": "file:@stove-labs/mip-token-standard/packages/token",
+    "@zkfs/contract-api": "^0.1.9-develop.159",
+    "@zkfs/safe-math": "^0.1.1-develop.168"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
