@@ -1,3 +1,3 @@
-import { FundPool } from './FundPool.js';
+import FundPool from './FundPool.js';
 
 export { FundPool };
